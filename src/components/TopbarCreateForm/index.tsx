@@ -14,7 +14,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { Container, ButtonSubmit, Avatar } from './styles';
 import { Context } from '../../UserProvider';
 
-const TopbarCreateForm: React.FC<any> = ({ confirm, setConfirm, titleForm, setTitleForm, setErrors, verifyErrors, errors, updateForm }: any) => {
+const TopbarCreateForm: React.FC<any> = ({ confirm, setShow, setConfirm, titleForm, setTitleForm, setErrors, verifyErrors, errors, updateForm }: any) => {
   const [user, setUser] = useContext(Context)
   
   const colors = [
@@ -46,6 +46,7 @@ const TopbarCreateForm: React.FC<any> = ({ confirm, setConfirm, titleForm, setTi
       updateForm()
       setErrors("")
       setConfirm("updated form")
+      setShow(true)
     } else {
       setErrors(getErrors)
       setConfirm("")
