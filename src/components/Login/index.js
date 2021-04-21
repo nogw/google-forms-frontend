@@ -58,10 +58,10 @@ var Login = function () {
     var initializeValue = {
         email: "",
         password: "",
-        username: "nogw",
-        emailRegister: "gabrielnogueiraoliveira@gmail.com",
-        passwordRegister: "mari1981",
-        passwordRegisterConfirm: "mari1981",
+        username: "",
+        emailRegister: "",
+        passwordRegister: "",
+        passwordRegisterConfirm: "",
     };
     var _a = useState('login'), MenuNow = _a[0], setMenuNow = _a[1];
     var _b = useState(initializeValue), inputs = _b[0], setInputs = _b[1];
