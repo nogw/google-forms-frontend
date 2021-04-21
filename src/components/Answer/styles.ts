@@ -22,6 +22,7 @@ export const Card = styled.div`
     
     .short {
       margin-top: 20px;
+      width: 100%;
 
       input {
         color: #202124;
@@ -29,7 +30,7 @@ export const Card = styled.div`
         height: 28px;
         font-weight: 400;
         font-family: "Roboto";
-        width: 50%;
+        width: 100%;
 
         outline: none;
         white-space: pre-wrap;
@@ -51,7 +52,7 @@ export const Card = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 50%;
+        width: 100%;
         
         .line {
           width: 100%;
