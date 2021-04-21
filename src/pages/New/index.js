@@ -3,6 +3,25 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,19 +58,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
-var FormCreate_1 = require("../../components/FormCreate");
-var TopbarCreateForm_1 = require("../../components/TopbarCreateForm");
-var Answer_1 = require("../../components/Answer");
-var FormAnswers_1 = require("../../components/FormAnswers");
-var styled_components_1 = require("styled-components");
+var react_1 = __importStar(require("react"));
+var FormCreate_1 = __importDefault(require("../../components/FormCreate"));
+var TopbarCreateForm_1 = __importDefault(require("../../components/TopbarCreateForm"));
+var Answer_1 = __importDefault(require("../../components/Answer"));
+var FormAnswers_1 = __importDefault(require("../../components/FormAnswers"));
+var styled_components_1 = __importDefault(require("styled-components"));
 var react_router_dom_1 = require("react-router-dom");
-var api_1 = require("../../services/api");
+var api_1 = __importDefault(require("../../services/api"));
 var UserProvider_1 = require("../../UserProvider");
-var Tabs_1 = require("@material-ui/core/Tabs");
-var Tab_1 = require("@material-ui/core/Tab");
-var CircularProgress_1 = require("@material-ui/core/CircularProgress");
+var Tabs_1 = __importDefault(require("@material-ui/core/Tabs"));
+var Tab_1 = __importDefault(require("@material-ui/core/Tab"));
+var CircularProgress_1 = __importDefault(require("@material-ui/core/CircularProgress"));
 var Container = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  height: 100vh;\n  background-color: #f1f1f1;\n\n  .top {\n    width: 100%;\n    min-height: 40px;\n    \n    .MuiTabs-root {\n      background-color: #fff;\n      height: 40px;\n      box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);\n      position: relative;\n      z-index: 996;\n\n      .MuiTab-root {\n        font-size: 14px;\n        text-transform: lowercase;\n        min-width: 120px;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n      \n        .MuiButtonBase-root {\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          height: 40px;\n\n          .MuiTouchRipple-root {\n            height: 40px;\n          }\n        } \n      }\n    }\t\n  }\n"], ["\n  height: 100vh;\n  background-color: #f1f1f1;\n\n  .top {\n    width: 100%;\n    min-height: 40px;\n    \n    .MuiTabs-root {\n      background-color: #fff;\n      height: 40px;\n      box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);\n      position: relative;\n      z-index: 996;\n\n      .MuiTab-root {\n        font-size: 14px;\n        text-transform: lowercase;\n        min-width: 120px;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n      \n        .MuiButtonBase-root {\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          height: 40px;\n\n          .MuiTouchRipple-root {\n            height: 40px;\n          }\n        } \n      }\n    }\t\n  }\n"])));
 var LoadContainer = styled_components_1.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  background-color: #f1f1f1;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n"], ["\n  background-color: #f1f1f1;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n"])));
 var New = function () {

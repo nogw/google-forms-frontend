@@ -51,18 +51,21 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
+var react_1 = __importDefault(require("react"));
 var styles_1 = require("./styles");
-var MenuItem_1 = require("@material-ui/core/MenuItem");
-var FormControl_1 = require("@material-ui/core/FormControl");
-var Select_1 = require("@material-ui/core/Select");
-var RadioButtonChecked_1 = require("@material-ui/icons/RadioButtonChecked");
-var Subject_1 = require("@material-ui/icons/Subject");
-var ShortText_1 = require("@material-ui/icons/ShortText");
-var DeleteOutlineOutlined_1 = require("@material-ui/icons/DeleteOutlineOutlined");
-var IconButton_1 = require("@material-ui/core/IconButton");
-var AddCircleOutlineOutlined_1 = require("@material-ui/icons/AddCircleOutlineOutlined");
+var MenuItem_1 = __importDefault(require("@material-ui/core/MenuItem"));
+var FormControl_1 = __importDefault(require("@material-ui/core/FormControl"));
+var Select_1 = __importDefault(require("@material-ui/core/Select"));
+var RadioButtonChecked_1 = __importDefault(require("@material-ui/icons/RadioButtonChecked"));
+var Subject_1 = __importDefault(require("@material-ui/icons/Subject"));
+var ShortText_1 = __importDefault(require("@material-ui/icons/ShortText"));
+var DeleteOutlineOutlined_1 = __importDefault(require("@material-ui/icons/DeleteOutlineOutlined"));
+var IconButton_1 = __importDefault(require("@material-ui/core/IconButton"));
+var AddCircleOutlineOutlined_1 = __importDefault(require("@material-ui/icons/AddCircleOutlineOutlined"));
 var TitleForm = function (_a) {
     var options = _a.options, setOptions = _a.setOptions;
     var optionsEdit = options;

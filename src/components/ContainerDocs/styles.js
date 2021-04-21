@@ -3,9 +3,12 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Doc = exports.Docs = exports.Texts = exports.Container = void 0;
-var styled_components_1 = require("styled-components");
+var styled_components_1 = __importDefault(require("styled-components"));
 exports.Container = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  background-color: #f1f1f1;\n  /* height: 200px; */\n  width: 100%;\n\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n"], ["\n  background-color: #f1f1f1;\n  /* height: 200px; */\n  width: 100%;\n\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n"])));
 exports.Texts = styled_components_1.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  height: 4rem;\n  width: 68%;\n  padding: 0px 8px;\n\n  h1 {\n    font-size: 1rem;\n    color: #202124;\n    width: 100%;\n    margin-bottom: 3.5px;\n    font-weight: 600;\n  }\n\n  @media screen and (max-width: 600px) {\n    width: 80%;\n\n    .MuiButtonBase-root {\n      position: relative;\n      left: 12px;\n    }\n  }\n"], ["\n  display: flex;\n  align-items: center;\n  height: 4rem;\n  width: 68%;\n  padding: 0px 8px;\n\n  h1 {\n    font-size: 1rem;\n    color: #202124;\n    width: 100%;\n    margin-bottom: 3.5px;\n    font-weight: 600;\n  }\n\n  @media screen and (max-width: 600px) {\n    width: 80%;\n\n    .MuiButtonBase-root {\n      position: relative;\n      left: 12px;\n    }\n  }\n"])));
 exports.Docs = styled_components_1.default.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  display: flex;\n  width: 68%;\n  padding-bottom: 26px;\n  \n  @media screen and (max-width: 600px) {\n    width: 80%\n  }\n"], ["\n  display: flex;\n  width: 68%;\n  padding-bottom: 26px;\n  \n  @media screen and (max-width: 600px) {\n    width: 80%\n  }\n"])));

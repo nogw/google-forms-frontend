@@ -3,9 +3,12 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Container = exports.Avatar = exports.IconApps = void 0;
-var styled_components_1 = require("styled-components");
+var styled_components_1 = __importDefault(require("styled-components"));
 var io5_1 = require("react-icons/io5");
 exports.IconApps = styled_components_1.default(io5_1.IoApps)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  height: 20px;\n"], ["\n  height: 20px;\n"])));
 exports.Avatar = styled_components_1.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  margin: 8px;\n  height: 32px;\n  width: 32px;\n  border-radius: 50%;\n  background-color: ", ";\n  display: flex;\n  align-items: center;\n  justify-content: center;\n\n  h1 {\n    color: #fff;\n    font-size: 1rem;\n    position: relative;\n    bottom: 1.51px;\n  }\n"], ["\n  margin: 8px;\n  height: 32px;\n  width: 32px;\n  border-radius: 50%;\n  background-color: ", ";\n  display: flex;\n  align-items: center;\n  justify-content: center;\n\n  h1 {\n    color: #fff;\n    font-size: 1rem;\n    position: relative;\n    bottom: 1.51px;\n  }\n"])), function (props) { return props.bgcColor || '#767F8C'; });
