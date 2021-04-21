@@ -1,26 +1,30 @@
-"use strict";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import React, { useContext, useEffect, useState } from 'react';
+import FormCreate from '../../components/FormCreate';
+import TopbarCreateForm from '../../components/TopbarCreateForm';
+import Answer from '../../components/Answer';
+import FormAnswers from '../../components/FormAnswers';
+import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
+import api from '../../services/api';
+import { Context } from '../../UserProvider';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import CircularProgress from '@material-ui/core/CircularProgress';
 var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -58,39 +62,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var FormCreate_1 = __importDefault(require("../../components/FormCreate"));
-var TopbarCreateForm_1 = __importDefault(require("../../components/TopbarCreateForm"));
-var Answer_1 = __importDefault(require("../../components/Answer"));
-var FormAnswers_1 = __importDefault(require("../../components/FormAnswers"));
-var styled_components_1 = __importDefault(require("styled-components"));
-var react_router_dom_1 = require("react-router-dom");
-var api_1 = __importDefault(require("../../services/api"));
-var UserProvider_1 = require("../../UserProvider");
-var Tabs_1 = __importDefault(require("@material-ui/core/Tabs"));
-var Tab_1 = __importDefault(require("@material-ui/core/Tab"));
-var CircularProgress_1 = __importDefault(require("@material-ui/core/CircularProgress"));
-var Container = styled_components_1.default.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  height: 100vh;\n  background-color: #f1f1f1;\n\n  .top {\n    width: 100%;\n    min-height: 40px;\n    \n    .MuiTabs-root {\n      background-color: #fff;\n      height: 40px;\n      box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);\n      position: relative;\n      z-index: 996;\n\n      .MuiTab-root {\n        font-size: 14px;\n        text-transform: lowercase;\n        min-width: 120px;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n      \n        .MuiButtonBase-root {\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          height: 40px;\n\n          .MuiTouchRipple-root {\n            height: 40px;\n          }\n        } \n      }\n    }\t\n  }\n"], ["\n  height: 100vh;\n  background-color: #f1f1f1;\n\n  .top {\n    width: 100%;\n    min-height: 40px;\n    \n    .MuiTabs-root {\n      background-color: #fff;\n      height: 40px;\n      box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);\n      position: relative;\n      z-index: 996;\n\n      .MuiTab-root {\n        font-size: 14px;\n        text-transform: lowercase;\n        min-width: 120px;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n      \n        .MuiButtonBase-root {\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          height: 40px;\n\n          .MuiTouchRipple-root {\n            height: 40px;\n          }\n        } \n      }\n    }\t\n  }\n"])));
-var LoadContainer = styled_components_1.default.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  background-color: #f1f1f1;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n"], ["\n  background-color: #f1f1f1;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n"])));
+var Container = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  height: 100vh;\n  background-color: #f1f1f1;\n\n  .top {\n    width: 100%;\n    min-height: 40px;\n    \n    .MuiTabs-root {\n      background-color: #fff;\n      height: 40px;\n      box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);\n      position: relative;\n      z-index: 996;\n\n      .MuiTab-root {\n        font-size: 14px;\n        text-transform: lowercase;\n        min-width: 120px;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n      \n        .MuiButtonBase-root {\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          height: 40px;\n\n          .MuiTouchRipple-root {\n            height: 40px;\n          }\n        } \n      }\n    }\t\n  }\n"], ["\n  height: 100vh;\n  background-color: #f1f1f1;\n\n  .top {\n    width: 100%;\n    min-height: 40px;\n    \n    .MuiTabs-root {\n      background-color: #fff;\n      height: 40px;\n      box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);\n      position: relative;\n      z-index: 996;\n\n      .MuiTab-root {\n        font-size: 14px;\n        text-transform: lowercase;\n        min-width: 120px;\n        padding: 0px;\n        display: flex;\n        align-items: center;\n      \n        .MuiButtonBase-root {\n          display: flex;\n          align-items: center;\n          justify-content: center;\n          height: 40px;\n\n          .MuiTouchRipple-root {\n            height: 40px;\n          }\n        } \n      }\n    }\t\n  }\n"])));
+var LoadContainer = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  background-color: #f1f1f1;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n"], ["\n  background-color: #f1f1f1;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n"])));
 var New = function () {
-    var _a = react_1.useState(""), errors = _a[0], setErrors = _a[1];
-    var id = react_router_dom_1.useParams();
-    var _b = react_1.useContext(UserProvider_1.Context), user = _b[0], setUser = _b[1];
-    var _c = react_1.useState([]), answers = _c[0], setAnswers = _c[1];
-    var _d = react_1.useState(true), load = _d[0], setLoad = _d[1];
-    var _e = react_1.useState(""), confirm = _e[0], setConfirm = _e[1];
-    var _f = react_1.useState({
+    var _a = useState(""), errors = _a[0], setErrors = _a[1];
+    var id = useParams();
+    var _b = useContext(Context), user = _b[0], setUser = _b[1];
+    var _c = useState([]), answers = _c[0], setAnswers = _c[1];
+    var _d = useState(true), load = _d[0], setLoad = _d[1];
+    var _e = useState(""), confirm = _e[0], setConfirm = _e[1];
+    var _f = useState({
         title: "",
         description: "",
         cards: []
     }), options = _f[0], setOptions = _f[1];
-    react_1.useEffect(function () {
+    useEffect(function () {
         var getForm = function () {
-            api_1.default.get('/form/getForm', {
+            api.get('/form/getForm', {
                 params: {
                     idForm: id.id
                 }
@@ -103,9 +91,9 @@ var New = function () {
         };
         getForm();
     }, []);
-    react_1.useEffect(function () {
+    useEffect(function () {
         var getAnswers = function () {
-            api_1.default.get('/answer/getAnswer', {
+            api.get('/answer/getAnswer', {
                 params: {
                     idForm: id.id
                 }
@@ -121,7 +109,7 @@ var New = function () {
     var updateForm = function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, api_1.default.post('/form/update', {
+                case 0: return [4 /*yield*/, api.post('/form/update', {
                         _id: options._id,
                         user_id: options.user_id,
                         title: options.title,
@@ -161,18 +149,14 @@ var New = function () {
         }
         return "";
     };
-    var _g = react_1.default.useState(0), value = _g[0], setValue = _g[1];
+    var _g = React.useState(0), value = _g[0], setValue = _g[1];
     var handleChange = function (event, newValue) {
         setValue(newValue);
     };
-    return (load ? (react_1.default.createElement(LoadContainer, null,
-        react_1.default.createElement(CircularProgress_1.default, null))) : (react_1.default.createElement(Container, null, options.user_id == user.id ? (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(TopbarCreateForm_1.default, { errors: errors, setErrors: setErrors, titleForm: options.title, updateForm: updateForm, verifyErrors: verifyErrors, confirm: confirm, setConfirm: setConfirm }),
-        react_1.default.createElement("div", { className: "top" },
-            react_1.default.createElement(Tabs_1.default, { value: value, onChange: handleChange, indicatorColor: "primary", textColor: "primary", centered: true },
-                react_1.default.createElement(Tab_1.default, { label: "questions" }),
-                react_1.default.createElement(Tab_1.default, { label: "answers" }))),
-        value == 0 ? (react_1.default.createElement(FormCreate_1.default, { options: options, setOptions: setOptions })) : (react_1.default.createElement(FormAnswers_1.default, { answers: answers, setAnswers: setAnswers })))) : (react_1.default.createElement(Answer_1.default, { options: options, setOptions: setOptions })))));
+    return (load ? (_jsx(LoadContainer, { children: _jsx(CircularProgress, {}, void 0) }, void 0)) : (_jsx(Container, { children: options.user_id == user.id ? (_jsxs(_Fragment, { children: [_jsx(TopbarCreateForm, { errors: errors, setErrors: setErrors, titleForm: options.title, updateForm: updateForm, verifyErrors: verifyErrors, confirm: confirm, setConfirm: setConfirm }, void 0),
+                _jsx("div", __assign({ className: "top" }, { children: _jsxs(Tabs, __assign({ value: value, onChange: handleChange, indicatorColor: "primary", textColor: "primary", centered: true }, { children: [_jsx(Tab, { label: "questions" }, void 0),
+                            _jsx(Tab, { label: "answers" }, void 0)] }), void 0) }), void 0),
+                value == 0 ? (_jsx(FormCreate, { options: options, setOptions: setOptions }, void 0)) : (_jsx(FormAnswers, { answers: answers, setAnswers: setAnswers }, void 0))] }, void 0)) : (_jsx(Answer, { options: options, setOptions: setOptions }, void 0)) }, void 0)));
 };
-exports.default = New;
+export default New;
 var templateObject_1, templateObject_2;

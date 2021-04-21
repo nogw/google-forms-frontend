@@ -1,4 +1,14 @@
-"use strict";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Container, Title, Card } from './styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import SubjectIcon from '@material-ui/icons/Subject';
+import ShortTextIcon from '@material-ui/icons/ShortText';
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import IconButton from '@material-ui/core/IconButton';
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -51,21 +61,6 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
         to[j] = from[i];
     return to;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importDefault(require("react"));
-var styles_1 = require("./styles");
-var MenuItem_1 = __importDefault(require("@material-ui/core/MenuItem"));
-var FormControl_1 = __importDefault(require("@material-ui/core/FormControl"));
-var Select_1 = __importDefault(require("@material-ui/core/Select"));
-var RadioButtonChecked_1 = __importDefault(require("@material-ui/icons/RadioButtonChecked"));
-var Subject_1 = __importDefault(require("@material-ui/icons/Subject"));
-var ShortText_1 = __importDefault(require("@material-ui/icons/ShortText"));
-var DeleteOutlineOutlined_1 = __importDefault(require("@material-ui/icons/DeleteOutlineOutlined"));
-var IconButton_1 = __importDefault(require("@material-ui/core/IconButton"));
-var AddCircleOutlineOutlined_1 = __importDefault(require("@material-ui/icons/AddCircleOutlineOutlined"));
 var TitleForm = function (_a) {
     var options = _a.options, setOptions = _a.setOptions;
     var optionsEdit = options;
@@ -76,22 +71,14 @@ var TitleForm = function (_a) {
             return (__assign(__assign({}, prev), (_a = {}, _a[name] = value, _a)));
         });
     };
-    return (react_1.default.createElement(styles_1.Title, null,
-        react_1.default.createElement("div", { className: "cardContainer" },
-            react_1.default.createElement("div", { className: "cardCreate" },
-                react_1.default.createElement("div", { className: "card" },
-                    react_1.default.createElement("div", { className: "topBar" }),
-                    react_1.default.createElement("div", { className: "leftBar" }),
-                    react_1.default.createElement("div", { className: "textareaTitle" },
-                        react_1.default.createElement("textarea", { spellCheck: "false", onChange: function (e) { return handleUpdateTitle(e); }, name: "title", value: options.title, placeholder: "Form title" }),
-                        react_1.default.createElement("div", { className: "lines" },
-                            react_1.default.createElement("div", { className: "line2" }),
-                            react_1.default.createElement("div", { className: "line" }))),
-                    react_1.default.createElement("div", { className: "textareaDescription" },
-                        react_1.default.createElement("textarea", { spellCheck: "false", onChange: function (e) { return handleUpdateTitle(e); }, name: "description", value: options.description, placeholder: "Form description" }),
-                        react_1.default.createElement("div", { className: "lines" },
-                            react_1.default.createElement("div", { className: "line2" }),
-                            react_1.default.createElement("div", { className: "line" }))))))));
+    return (_jsx(Title, { children: _jsx("div", __assign({ className: "cardContainer" }, { children: _jsx("div", __assign({ className: "cardCreate" }, { children: _jsxs("div", __assign({ className: "card" }, { children: [_jsx("div", { className: "topBar" }, void 0),
+                        _jsx("div", { className: "leftBar" }, void 0),
+                        _jsxs("div", __assign({ className: "textareaTitle" }, { children: [_jsx("textarea", { spellCheck: "false", onChange: function (e) { return handleUpdateTitle(e); }, name: "title", value: options.title, placeholder: "Form title" }, void 0),
+                                _jsxs("div", __assign({ className: "lines" }, { children: [_jsx("div", { className: "line2" }, void 0),
+                                        _jsx("div", { className: "line" }, void 0)] }), void 0)] }), void 0),
+                        _jsxs("div", __assign({ className: "textareaDescription" }, { children: [_jsx("textarea", { spellCheck: "false", onChange: function (e) { return handleUpdateTitle(e); }, name: "description", value: options.description, placeholder: "Form description" }, void 0),
+                                _jsxs("div", __assign({ className: "lines" }, { children: [_jsx("div", { className: "line2" }, void 0),
+                                        _jsx("div", { className: "line" }, void 0)] }), void 0)] }), void 0)] }), void 0) }), void 0) }), void 0) }, void 0));
 };
 var CardForm = function (_a) {
     var options = _a.options, setOptions = _a.setOptions, question = _a.question, type = _a.type, questions = _a.questions, index = _a.index, _id = _a._id;
@@ -153,69 +140,36 @@ var CardForm = function (_a) {
     };
     var method;
     if (options.cards[index].type === "choice") {
-        method = (react_1.default.createElement("div", { className: "questions" },
-            options.cards[index].questions.map(function (option, index) {
-                return (react_1.default.createElement("div", { key: index, id: "" + index, className: "question" },
-                    react_1.default.createElement("div", { className: "circle" }),
-                    react_1.default.createElement("div", { className: "inputQuestion" },
-                        react_1.default.createElement("input", { type: "text", value: option.option, onChange: function (e) { return updateQuestions(index, e.target.value); }, spellCheck: "false", placeholder: "Option" }),
-                        react_1.default.createElement("div", { className: "linesQuestion" },
-                            react_1.default.createElement("div", { className: "lineQuestion2" }),
-                            react_1.default.createElement("div", { className: "lineQuestion" }))),
-                    react_1.default.createElement(IconButton_1.default, { className: "deleteBtn", onClick: function () { return deleteQuestion(index); }, size: "small" },
-                        react_1.default.createElement(DeleteOutlineOutlined_1.default, { style: { fontSize: 20 } }))));
-            }),
-            optionsEdit.cards[index].questions.length < 5 ? (react_1.default.createElement("div", { className: "buttonAddNew" },
-                react_1.default.createElement("div", { className: "circle" }),
-                react_1.default.createElement("button", { onClick: handleNewOption },
-                    "Add option",
-                    react_1.default.createElement("div", { className: "line" })))) : ""));
+        method = (_jsxs("div", __assign({ className: "questions" }, { children: [options.cards[index].questions.map(function (option, index) {
+                    return (_jsxs("div", __assign({ id: "" + index, className: "question" }, { children: [_jsx("div", { className: "circle" }, void 0),
+                            _jsxs("div", __assign({ className: "inputQuestion" }, { children: [_jsx("input", { type: "text", value: option.option, onChange: function (e) { return updateQuestions(index, e.target.value); }, spellCheck: "false", placeholder: "Option" }, void 0),
+                                    _jsxs("div", __assign({ className: "linesQuestion" }, { children: [_jsx("div", { className: "lineQuestion2" }, void 0),
+                                            _jsx("div", { className: "lineQuestion" }, void 0)] }), void 0)] }), void 0),
+                            _jsx(IconButton, __assign({ className: "deleteBtn", onClick: function () { return deleteQuestion(index); }, size: "small" }, { children: _jsx(DeleteOutlineOutlinedIcon, { style: { fontSize: 20 } }, void 0) }), void 0)] }), index));
+                }),
+                optionsEdit.cards[index].questions.length < 5 ? (_jsxs("div", __assign({ className: "buttonAddNew" }, { children: [_jsx("div", { className: "circle" }, void 0),
+                        _jsxs("button", __assign({ onClick: handleNewOption }, { children: ["Add option", _jsx("div", { className: "line" }, void 0)] }), void 0)] }), void 0)) : ""] }), void 0));
     }
     else if (optionsEdit.cards[index].type === "paragraph") {
-        method = (react_1.default.createElement("div", { className: "paragraph" },
-            react_1.default.createElement("textarea", { disabled: true, placeholder: "Long response text" })));
+        method = (_jsx("div", __assign({ className: "paragraph" }, { children: _jsx("textarea", { disabled: true, placeholder: "Long response text" }, void 0) }), void 0));
     }
     else if (optionsEdit.cards[index].type === "short") {
-        method = (react_1.default.createElement("div", { className: "short" },
-            react_1.default.createElement("input", { disabled: true, type: "text", placeholder: "Short response text" })));
+        method = (_jsx("div", __assign({ className: "short" }, { children: _jsx("input", { disabled: true, type: "text", placeholder: "Short response text" }, void 0) }), void 0));
     }
-    return (react_1.default.createElement(styles_1.Card, null,
-        react_1.default.createElement("div", { className: "card" },
-            react_1.default.createElement("div", { className: "titleQuestion" },
-                react_1.default.createElement("div", { className: "textareaQuestion" },
-                    react_1.default.createElement("textarea", { spellCheck: "false", value: question, onChange: function (e) { return updateTitleQuestion(e.target.value); }, placeholder: "Question" }),
-                    react_1.default.createElement("div", { className: "lines" },
-                        react_1.default.createElement("div", { className: "line2" }),
-                        react_1.default.createElement("div", { className: "line" }))),
-                react_1.default.createElement(FormControl_1.default, { variant: "outlined", className: "input" },
-                    react_1.default.createElement(Select_1.default, { value: optionsEdit.cards[index].type, onChange: handleChange },
-                        react_1.default.createElement(MenuItem_1.default, { value: "choice" },
-                            react_1.default.createElement(RadioButtonChecked_1.default, null),
-                            " ",
-                            react_1.default.createElement("span", { className: "teste" }, "Multiple choice")),
-                        react_1.default.createElement(MenuItem_1.default, { value: "paragraph" },
-                            react_1.default.createElement(Subject_1.default, null),
-                            " ",
-                            react_1.default.createElement("span", { className: "teste" }, "Paragraph")),
-                        react_1.default.createElement(MenuItem_1.default, { value: "short" },
-                            react_1.default.createElement(ShortText_1.default, null),
-                            " ",
-                            react_1.default.createElement("span", { className: "teste" }, "Short answer"))))),
-            method,
-            react_1.default.createElement("div", { className: "delete" },
-                react_1.default.createElement("div", { className: "divisor" }),
-                react_1.default.createElement("div", { className: "buttons" },
-                    react_1.default.createElement(IconButton_1.default, { onClick: function () { return deleteCard(); } },
-                        react_1.default.createElement(DeleteOutlineOutlined_1.default, null)),
-                    react_1.default.createElement(IconButton_1.default, { className: "add", onClick: function () { return addNewCard(); } },
-                        react_1.default.createElement(AddCircleOutlineOutlined_1.default, null)))))));
+    return (_jsx(Card, { children: _jsxs("div", __assign({ className: "card" }, { children: [_jsxs("div", __assign({ className: "titleQuestion" }, { children: [_jsxs("div", __assign({ className: "textareaQuestion" }, { children: [_jsx("textarea", { spellCheck: "false", value: question, onChange: function (e) { return updateTitleQuestion(e.target.value); }, placeholder: "Question" }, void 0),
+                                _jsxs("div", __assign({ className: "lines" }, { children: [_jsx("div", { className: "line2" }, void 0),
+                                        _jsx("div", { className: "line" }, void 0)] }), void 0)] }), void 0),
+                        _jsx(FormControl, __assign({ variant: "outlined", className: "input" }, { children: _jsxs(Select, __assign({ value: optionsEdit.cards[index].type, onChange: handleChange }, { children: [_jsxs(MenuItem, __assign({ value: "choice" }, { children: [_jsx(RadioButtonCheckedIcon, {}, void 0), " ", _jsx("span", __assign({ className: "teste" }, { children: "Multiple choice" }), void 0)] }), void 0),
+                                    _jsxs(MenuItem, __assign({ value: "paragraph" }, { children: [_jsx(SubjectIcon, {}, void 0), " ", _jsx("span", __assign({ className: "teste" }, { children: "Paragraph" }), void 0)] }), void 0),
+                                    _jsxs(MenuItem, __assign({ value: "short" }, { children: [_jsx(ShortTextIcon, {}, void 0), " ", _jsx("span", __assign({ className: "teste" }, { children: "Short answer" }), void 0)] }), void 0)] }), void 0) }), void 0)] }), void 0), method, _jsxs("div", __assign({ className: "delete" }, { children: [_jsx("div", { className: "divisor" }, void 0),
+                        _jsxs("div", __assign({ className: "buttons" }, { children: [_jsx(IconButton, __assign({ onClick: function () { return deleteCard(); } }, { children: _jsx(DeleteOutlineOutlinedIcon, {}, void 0) }), void 0),
+                                _jsx(IconButton, __assign({ className: "add", onClick: function () { return addNewCard(); } }, { children: _jsx(AddCircleOutlineOutlinedIcon, {}, void 0) }), void 0)] }), void 0)] }), void 0)] }), void 0) }, void 0));
 };
 var FormCreate = function (_a) {
     var titleForm = _a.titleForm, setTitleForm = _a.setTitleForm, options = _a.options, setOptions = _a.setOptions;
-    return (react_1.default.createElement(styles_1.Container, null,
-        react_1.default.createElement(TitleForm, { options: options, setOptions: setOptions }),
-        options.cards.map(function (option, index) {
-            return (react_1.default.createElement(CardForm, { key: index, question: option.question, type: option.type, questions: option.questions, options: options, setOptions: setOptions, index: index, _id: option._id }));
-        })));
+    return (_jsxs(Container, { children: [_jsx(TitleForm, { options: options, setOptions: setOptions }, void 0),
+            options.cards.map(function (option, index) {
+                return (_jsx(CardForm, { question: option.question, type: option.type, questions: option.questions, options: options, setOptions: setOptions, index: index, _id: option._id }, index));
+            })] }, void 0));
 };
-exports.default = FormCreate;
+export default FormCreate;

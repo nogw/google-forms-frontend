@@ -1,45 +1,33 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useContext, useState } from 'react';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import IconButton from '@material-ui/core/IconButton';
+import { Container, Texts, Docs, Doc } from './styles';
+import api from '../../services/api';
+import { Context } from '../../UserProvider';
+import dayjs from 'dayjs';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useHistory } from 'react-router-dom';
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var MoreVert_1 = __importDefault(require("@material-ui/icons/MoreVert"));
-var IconButton_1 = __importDefault(require("@material-ui/core/IconButton"));
-var styles_1 = require("./styles");
-var api_1 = __importDefault(require("../../services/api"));
-var UserProvider_1 = require("../../UserProvider");
-var dayjs_1 = __importDefault(require("dayjs"));
-var CircularProgress_1 = __importDefault(require("@material-ui/core/CircularProgress"));
-var react_router_dom_1 = require("react-router-dom");
 var ContainerDocs = function () {
-    var _a = react_1.useContext(UserProvider_1.Context), user = _a[0], setUser = _a[1];
-    var _b = react_1.useState(false), load = _b[0], setLoad = _b[1];
-    var history = react_router_dom_1.useHistory();
+    var _a = useContext(Context), user = _a[0], setUser = _a[1];
+    var _b = useState(false), load = _b[0], setLoad = _b[1];
+    var history = useHistory();
     var createForm = function () {
         setLoad(true);
-        api_1.default.post("/form/create", {
+        api.post("/form/create", {
             user_id: user.id,
-            data: dayjs_1.default().format("MMMM D, YYYY"),
+            data: dayjs().format("MMMM D, YYYY"),
             cards: [
                 {
                     question: "",
@@ -60,15 +48,9 @@ var ContainerDocs = function () {
             console.log(err.response.data);
         });
     };
-    return (react_1.default.createElement(styles_1.Container, null,
-        react_1.default.createElement(styles_1.Texts, null,
-            react_1.default.createElement("h1", null, "Start a new form"),
-            react_1.default.createElement(IconButton_1.default, { size: "small" },
-                react_1.default.createElement(MoreVert_1.default, null))),
-        react_1.default.createElement(styles_1.Docs, null,
-            react_1.default.createElement(styles_1.Doc, { onClick: createForm },
-                react_1.default.createElement("div", { className: "image" }, load ? (react_1.default.createElement(CircularProgress_1.default, null)) : (react_1.default.createElement("img", { src: "https://ssl.gstatic.com/docs/templates/thumbnails/forms-blank-googlecolors.png", alt: "add" }))),
-                react_1.default.createElement("div", { className: "text" },
-                    react_1.default.createElement("h1", null, "In blank"))))));
+    return (_jsxs(Container, { children: [_jsxs(Texts, { children: [_jsx("h1", { children: "Start a new form" }, void 0),
+                    _jsx(IconButton, __assign({ size: "small" }, { children: _jsx(MoreVertIcon, {}, void 0) }), void 0)] }, void 0),
+            _jsx(Docs, { children: _jsxs(Doc, __assign({ onClick: createForm }, { children: [_jsx("div", __assign({ className: "image" }, { children: load ? (_jsx(CircularProgress, {}, void 0)) : (_jsx("img", { src: "https://ssl.gstatic.com/docs/templates/thumbnails/forms-blank-googlecolors.png", alt: "add" }, void 0)) }), void 0),
+                        _jsx("div", __assign({ className: "text" }, { children: _jsx("h1", { children: "In blank" }, void 0) }), void 0)] }), void 0) }, void 0)] }, void 0));
 };
-exports.default = ContainerDocs;
+export default ContainerDocs;

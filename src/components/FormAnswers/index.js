@@ -1,4 +1,10 @@
-"use strict";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { useEffect, useState } from 'react';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Container, Counter } from './styles';
+import { Chart } from "react-google-charts";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -10,59 +16,27 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __spreadArray = (this && this.__spreadArray) || function (to, from) {
     for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
         to[j] = from[i];
     return to;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var Equalizer_1 = __importDefault(require("@material-ui/icons/Equalizer"));
-var IconButton_1 = __importDefault(require("@material-ui/core/IconButton"));
-var MoreVert_1 = __importDefault(require("@material-ui/icons/MoreVert"));
-var styles_1 = require("./styles");
-var react_google_charts_1 = require("react-google-charts");
 var AnswersList = function (_a) {
     var answer = _a.answer;
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("p", { className: "firstP" }, answer.question),
-        react_1.default.createElement("p", { className: "secondP" },
-            answer.answer.length,
-            " response"),
-        answer.answer.map(function (ans, index) {
-            return (react_1.default.createElement("p", { className: "response", key: index }, ans.response));
-        })));
+    return (_jsxs(_Fragment, { children: [_jsx("p", __assign({ className: "firstP" }, { children: answer.question }), void 0),
+            _jsxs("p", __assign({ className: "secondP" }, { children: [answer.answer.length, " response"] }), void 0),
+            answer.answer.map(function (ans, index) {
+                return (_jsx("p", __assign({ className: "response" }, { children: ans.response }), index));
+            })] }, void 0));
 };
 var AnswerGraphic = function (_a) {
     var answer = _a.answer;
     var myData = [{ angle: 1 }, { angle: 5 }, { angle: 2 }];
-    var _b = react_1.useState([['Linguagens', 'Quantidade']]), data = _b[0], setData = _b[1];
+    var _b = useState([['Linguagens', 'Quantidade']]), data = _b[0], setData = _b[1];
     var list = [];
     var list2 = [['Linguagens', 'Quantidade']];
     var dataGraphic = [];
-    react_1.useEffect(function () {
+    useEffect(function () {
         for (var k = 0; k < answer.answer.length; k++) {
             list.push(answer.answer[k].response);
         }
@@ -81,19 +55,15 @@ var AnswerGraphic = function (_a) {
         }
         setData(list2);
     }, []);
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("p", { className: "firstP" }, answer.question),
-        react_1.default.createElement("p", { className: "secondP" },
-            answer.answer.length,
-            " response"),
-        react_1.default.createElement("div", { className: "chart" },
-            react_1.default.createElement(react_google_charts_1.Chart, { chartType: "PieChart", loader: react_1.default.createElement("div", null, "Loading Chart"), data: data, rootProps: { 'data-testid': '1' } }))));
+    return (_jsxs(_Fragment, { children: [_jsx("p", __assign({ className: "firstP" }, { children: answer.question }), void 0),
+            _jsxs("p", __assign({ className: "secondP" }, { children: [answer.answer.length, " response"] }), void 0),
+            _jsx("div", __assign({ className: "chart" }, { children: _jsx(Chart, { chartType: "PieChart", loader: _jsx("div", { children: "Loading Chart" }, void 0), data: data, rootProps: { 'data-testid': '1' } }, void 0) }), void 0)] }, void 0));
 };
 var FormAnswers = function (_a) {
     var answers = _a.answers, setAnswers = _a.setAnswers;
-    var _b = react_1.useState([]), answersUsers = _b[0], setAnswersUsers = _b[1];
+    var _b = useState([]), answersUsers = _b[0], setAnswersUsers = _b[1];
     var result = Object.keys(answersUsers).map(function (key) { return answersUsers[key]; });
-    react_1.useEffect(function () {
+    useEffect(function () {
         var answerAddInState = function (value, index) {
             setAnswersUsers(function (prev) {
                 var _a;
@@ -122,18 +92,11 @@ var FormAnswers = function (_a) {
         }
         setAnswersUsers(tmp);
     }, []);
-    return (react_1.default.createElement(styles_1.Container, null,
-        react_1.default.createElement(styles_1.Counter, null,
-            react_1.default.createElement("h1", null,
-                answers.length,
-                " replies"),
-            react_1.default.createElement(IconButton_1.default, { size: "small" },
-                react_1.default.createElement(Equalizer_1.default, { className: "chart" })),
-            react_1.default.createElement(IconButton_1.default, { size: "small" },
-                react_1.default.createElement(MoreVert_1.default, null))),
-        answers.length > 1 ? (react_1.default.createElement("div", { className: "list" }, result.map(function (answer, index) {
-            return (react_1.default.createElement("div", { className: "answer", key: index }, answer.type == "choice" ? (react_1.default.createElement(AnswerGraphic, { answer: answer })) : (react_1.default.createElement(AnswersList, { answer: answer }))));
-        }))) : (react_1.default.createElement("div", { className: "noResponses" },
-            react_1.default.createElement("p", null, "Waiting for answers")))));
+    return (_jsxs(Container, { children: [_jsxs(Counter, { children: [_jsxs("h1", { children: [answers.length, " replies"] }, void 0),
+                    _jsx(IconButton, __assign({ size: "small" }, { children: _jsx(EqualizerIcon, { className: "chart" }, void 0) }), void 0),
+                    _jsx(IconButton, __assign({ size: "small" }, { children: _jsx(MoreVertIcon, {}, void 0) }), void 0)] }, void 0),
+            answers.length > 1 ? (_jsx("div", __assign({ className: "list" }, { children: result.map(function (answer, index) {
+                    return (_jsx("div", __assign({ className: "answer" }, { children: answer.type == "choice" ? (_jsx(AnswerGraphic, { answer: answer }, void 0)) : (_jsx(AnswersList, { answer: answer }, void 0)) }), index));
+                }) }), void 0)) : (_jsx("div", __assign({ className: "noResponses" }, { children: _jsx("p", { children: "Waiting for answers" }, void 0) }), void 0))] }, void 0));
 };
-exports.default = FormAnswers;
+export default FormAnswers;

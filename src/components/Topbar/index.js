@@ -1,34 +1,22 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useContext } from 'react';
+import { Container, IconApps, Avatar } from './styles';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from '@material-ui/core/IconButton';
+import Logo from '../logo.svg';
+import { Context } from '../../UserProvider';
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var styles_1 = require("./styles");
-var Menu_1 = __importDefault(require("@material-ui/icons/Menu"));
-var Search_1 = __importDefault(require("@material-ui/icons/Search"));
-var IconButton_1 = __importDefault(require("@material-ui/core/IconButton"));
-var logo_svg_1 = __importDefault(require("../logo.svg"));
-var UserProvider_1 = require("../../UserProvider");
 var colors = [
     "#FF7262",
     "#0ACF83",
@@ -52,20 +40,13 @@ var colors = [
 ];
 var Topbar = function (_a) {
     var search = _a.search, setSearch = _a.setSearch;
-    var _b = react_1.useContext(UserProvider_1.Context), user = _b[0], setUser = _b[1];
-    return (react_1.default.createElement(styles_1.Container, null,
-        react_1.default.createElement("div", { className: "left" },
-            react_1.default.createElement(IconButton_1.default, null,
-                react_1.default.createElement(Menu_1.default, null)),
-            react_1.default.createElement("img", { src: logo_svg_1.default, alt: "" }),
-            react_1.default.createElement("h1", null, "Forms")),
-        react_1.default.createElement("div", { className: "input" },
-            react_1.default.createElement(Search_1.default, null),
-            react_1.default.createElement("input", { type: "text", value: search, onChange: function (e) { return setSearch(e.target.value); }, placeholder: "Search" })),
-        react_1.default.createElement("div", { className: "right" },
-            react_1.default.createElement(IconButton_1.default, null,
-                react_1.default.createElement(styles_1.IconApps, null)),
-            react_1.default.createElement(styles_1.Avatar, { bgcColor: colors[user.avatarColor] },
-                react_1.default.createElement("h1", null, user ? user.name.substring(0, 2) : "")))));
+    var _b = useContext(Context), user = _b[0], setUser = _b[1];
+    return (_jsxs(Container, { children: [_jsxs("div", __assign({ className: "left" }, { children: [_jsx(IconButton, { children: _jsx(MenuIcon, {}, void 0) }, void 0),
+                    _jsx("img", { src: Logo, alt: "" }, void 0),
+                    _jsx("h1", { children: "Forms" }, void 0)] }), void 0),
+            _jsxs("div", __assign({ className: "input" }, { children: [_jsx(SearchIcon, {}, void 0),
+                    _jsx("input", { type: "text", value: search, onChange: function (e) { return setSearch(e.target.value); }, placeholder: "Search" }, void 0)] }), void 0),
+            _jsxs("div", __assign({ className: "right" }, { children: [_jsx(IconButton, { children: _jsx(IconApps, {}, void 0) }, void 0),
+                    _jsx(Avatar, __assign({ bgcColor: colors[user.avatarColor] }, { children: _jsx("h1", { children: user ? user.name.substring(0, 2) : "" }, void 0) }), void 0)] }), void 0)] }, void 0));
 };
-exports.default = Topbar;
+export default Topbar;

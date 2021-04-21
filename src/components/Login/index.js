@@ -1,4 +1,12 @@
-"use strict";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { useContext, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import { Container } from './styles';
+import api from '../../services/api';
+import jwtDecode from 'jwt-decode';
+import { Context } from '../../UserProvider';
+import { useHistory } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,25 +17,6 @@ var __assign = (this && this.__assign) || function () {
         return t;
     };
     return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -65,18 +54,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var react_transition_group_1 = require("react-transition-group");
-var styles_1 = require("./styles");
-var api_1 = __importDefault(require("../../services/api"));
-var jwt_decode_1 = __importDefault(require("jwt-decode"));
-var UserProvider_1 = require("../../UserProvider");
-var react_router_dom_1 = require("react-router-dom");
-var CircularProgress_1 = __importDefault(require("@material-ui/core/CircularProgress"));
 var Login = function () {
     var initializeValue = {
         email: "",
@@ -86,11 +63,11 @@ var Login = function () {
         passwordRegister: "mari1981",
         passwordRegisterConfirm: "mari1981",
     };
-    var _a = react_1.useState('login'), MenuNow = _a[0], setMenuNow = _a[1];
-    var _b = react_1.useState(initializeValue), inputs = _b[0], setInputs = _b[1];
-    var _c = react_1.useContext(UserProvider_1.Context), user = _c[0], setUser = _c[1];
-    var _d = react_1.useState(false), isLoading = _d[0], setIsLoading = _d[1];
-    var history = react_router_dom_1.useHistory();
+    var _a = useState('login'), MenuNow = _a[0], setMenuNow = _a[1];
+    var _b = useState(initializeValue), inputs = _b[0], setInputs = _b[1];
+    var _c = useContext(Context), user = _c[0], setUser = _c[1];
+    var _d = useState(false), isLoading = _d[0], setIsLoading = _d[1];
+    var history = useHistory();
     var handleChange = function (e) {
         var _a = e.target, name = _a.name, value = _a.value;
         setInputs(function (prev) {
@@ -109,14 +86,14 @@ var Login = function () {
             var newUser = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, api_1.default.post('/user/register', {
+                        case 0: return [4 /*yield*/, api.post('/user/register', {
                                 name: inputs.username,
                                 email: inputs.emailRegister,
                                 password: inputs.passwordRegister,
                                 passwordConfirm: inputs.passwordRegisterConfirm,
                             })
                                 .then(function (user) {
-                                var decoded = jwt_decode_1.default(user.data.token);
+                                var decoded = jwtDecode(user.data.token);
                                 localStorage.setItem('jwt', JSON.stringify(user.data.token));
                                 setUser(decoded);
                                 history.push("/");
@@ -142,12 +119,12 @@ var Login = function () {
             var Login_1 = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, api_1.default.post('/user/login', {
+                        case 0: return [4 /*yield*/, api.post('/user/login', {
                                 email: inputs.email,
                                 password: inputs.password,
                             })
                                 .then(function (user) {
-                                var decoded = jwt_decode_1.default(user.data.token);
+                                var decoded = jwtDecode(user.data.token);
                                 localStorage.setItem('jwt', JSON.stringify(user.data.token));
                                 setUser(decoded);
                                 history.push("/");
@@ -164,38 +141,24 @@ var Login = function () {
             Login_1();
         }
     };
-    return (react_1.default.createElement(styles_1.Container, null, isLoading ? (react_1.default.createElement(CircularProgress_1.default, null)) : (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(react_transition_group_1.CSSTransition, { in: MenuNow === 'login', unmountOnExit: true, timeout: 500, classNames: "menu-primary" },
-            react_1.default.createElement("main", null,
-                react_1.default.createElement("h1", null, "Welcome back!"),
-                react_1.default.createElement("h4", null, "We're so excited to see you again!"),
-                react_1.default.createElement("div", { className: "input" },
-                    react_1.default.createElement("label", { htmlFor: "email" }, "EMAIL"),
-                    react_1.default.createElement("input", { type: "text", name: "email", onChange: handleChange, value: inputs.email })),
-                react_1.default.createElement("div", { className: "input" },
-                    react_1.default.createElement("label", { htmlFor: "password" }, "PASSWORD"),
-                    react_1.default.createElement("input", { type: "password", name: "password", onChange: handleChange, value: inputs.password })),
-                react_1.default.createElement("button", { onClick: handleLogin }, "Login"),
-                react_1.default.createElement("p", null,
-                    "Need an account? ",
-                    react_1.default.createElement("span", { onClick: function () { return setMenuNow('register'); } }, "Register")))),
-        react_1.default.createElement(react_transition_group_1.CSSTransition, { in: MenuNow === 'register', unmountOnExit: true, timeout: 500, classNames: "menu-primary" },
-            react_1.default.createElement("main", null,
-                react_1.default.createElement("h1", null, "Create an account"),
-                react_1.default.createElement("div", { className: "input" },
-                    react_1.default.createElement("label", { htmlFor: "username" }, "USERNAME"),
-                    react_1.default.createElement("input", { type: "text", name: "username", onChange: handleChange, value: inputs.username })),
-                react_1.default.createElement("div", { className: "input" },
-                    react_1.default.createElement("label", { htmlFor: "email" }, "EMAIL"),
-                    react_1.default.createElement("input", { type: "text", name: "emailRegister", onChange: handleChange, value: inputs.emailRegister })),
-                react_1.default.createElement("div", { className: "input" },
-                    react_1.default.createElement("label", { htmlFor: "password" }, "PASSWORD"),
-                    react_1.default.createElement("input", { type: "password", name: "passwordRegister", onChange: handleChange, value: inputs.passwordRegister })),
-                react_1.default.createElement("div", { className: "input" },
-                    react_1.default.createElement("label", { htmlFor: "passwordRegisterConfirm" }, "PASSWORD CONFIRM"),
-                    react_1.default.createElement("input", { type: "password", name: "passwordRegisterConfirm", onChange: handleChange, value: inputs.passwordRegisterConfirm })),
-                react_1.default.createElement("button", { onClick: handleCreateAccount }, "Continue"),
-                react_1.default.createElement("p", null,
-                    react_1.default.createElement("span", { onClick: function () { return setMenuNow('login'); } }, "Already have an account?"))))))));
+    return (_jsx(Container, { children: isLoading ? (_jsx(CircularProgress, {}, void 0)) : (_jsxs(_Fragment, { children: [_jsx(CSSTransition, __assign({ in: MenuNow === 'login', unmountOnExit: true, timeout: 500, classNames: "menu-primary" }, { children: _jsxs("main", { children: [_jsx("h1", { children: "Welcome back!" }, void 0),
+                            _jsx("h4", { children: "We're so excited to see you again!" }, void 0),
+                            _jsxs("div", __assign({ className: "input" }, { children: [_jsx("label", __assign({ htmlFor: "email" }, { children: "EMAIL" }), void 0),
+                                    _jsx("input", { type: "text", name: "email", onChange: handleChange, value: inputs.email }, void 0)] }), void 0),
+                            _jsxs("div", __assign({ className: "input" }, { children: [_jsx("label", __assign({ htmlFor: "password" }, { children: "PASSWORD" }), void 0),
+                                    _jsx("input", { type: "password", name: "password", onChange: handleChange, value: inputs.password }, void 0)] }), void 0),
+                            _jsx("button", __assign({ onClick: handleLogin }, { children: "Login" }), void 0),
+                            _jsxs("p", { children: ["Need an account? ", _jsx("span", __assign({ onClick: function () { return setMenuNow('register'); } }, { children: "Register" }), void 0)] }, void 0)] }, void 0) }), void 0),
+                _jsx(CSSTransition, __assign({ in: MenuNow === 'register', unmountOnExit: true, timeout: 500, classNames: "menu-primary" }, { children: _jsxs("main", { children: [_jsx("h1", { children: "Create an account" }, void 0),
+                            _jsxs("div", __assign({ className: "input" }, { children: [_jsx("label", __assign({ htmlFor: "username" }, { children: "USERNAME" }), void 0),
+                                    _jsx("input", { type: "text", name: "username", onChange: handleChange, value: inputs.username }, void 0)] }), void 0),
+                            _jsxs("div", __assign({ className: "input" }, { children: [_jsx("label", __assign({ htmlFor: "email" }, { children: "EMAIL" }), void 0),
+                                    _jsx("input", { type: "text", name: "emailRegister", onChange: handleChange, value: inputs.emailRegister }, void 0)] }), void 0),
+                            _jsxs("div", __assign({ className: "input" }, { children: [_jsx("label", __assign({ htmlFor: "password" }, { children: "PASSWORD" }), void 0),
+                                    _jsx("input", { type: "password", name: "passwordRegister", onChange: handleChange, value: inputs.passwordRegister }, void 0)] }), void 0),
+                            _jsxs("div", __assign({ className: "input" }, { children: [_jsx("label", __assign({ htmlFor: "passwordRegisterConfirm" }, { children: "PASSWORD CONFIRM" }), void 0),
+                                    _jsx("input", { type: "password", name: "passwordRegisterConfirm", onChange: handleChange, value: inputs.passwordRegisterConfirm }, void 0)] }), void 0),
+                            _jsx("button", __assign({ onClick: handleCreateAccount }, { children: "Continue" }), void 0),
+                            _jsx("p", { children: _jsx("span", __assign({ onClick: function () { return setMenuNow('login'); } }, { children: "Already have an account?" }), void 0) }, void 0)] }, void 0) }), void 0)] }, void 0)) }, void 0));
 };
-exports.default = Login;
+export default Login;

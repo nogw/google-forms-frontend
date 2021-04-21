@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var auth = {
     isAuthenticated: function () {
         if (typeof window == "undefined")
@@ -23,4 +21,4 @@ var auth = {
         cb();
     }
 };
-exports.default = auth;
+export default auth;

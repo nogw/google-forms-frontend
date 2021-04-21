@@ -1,4 +1,17 @@
-"use strict";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useContext, useState } from 'react';
+import { Container, Title, Card } from './styles';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import IconButton from '@material-ui/core/IconButton';
+import ErrorIcon from '@material-ui/icons/ErrorOutlineRounded';
+import api from '../../services/api';
+import dayjs from 'dayjs';
+import { Context } from '../../UserProvider';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,25 +22,6 @@ var __assign = (this && this.__assign) || function () {
         return t;
     };
     return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
 };
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -65,32 +59,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var styles_1 = require("./styles");
-var Radio_1 = __importDefault(require("@material-ui/core/Radio"));
-var RadioGroup_1 = __importDefault(require("@material-ui/core/RadioGroup"));
-var FormControlLabel_1 = __importDefault(require("@material-ui/core/FormControlLabel"));
-var FormControl_1 = __importDefault(require("@material-ui/core/FormControl"));
-var TextareaAutosize_1 = __importDefault(require("@material-ui/core/TextareaAutosize"));
-var IconButton_1 = __importDefault(require("@material-ui/core/IconButton"));
-var ErrorOutlineRounded_1 = __importDefault(require("@material-ui/icons/ErrorOutlineRounded"));
-var api_1 = __importDefault(require("../../services/api"));
-var dayjs_1 = __importDefault(require("dayjs"));
-var UserProvider_1 = require("../../UserProvider");
-var CheckCircleOutline_1 = __importDefault(require("@material-ui/icons/CheckCircleOutline"));
 var TitleCard = function (_a) {
     var title = _a.title, description = _a.description;
-    return (react_1.default.createElement(styles_1.Title, null,
-        react_1.default.createElement("div", { className: "cardContainer" },
-            react_1.default.createElement("div", { className: "cardCreate" },
-                react_1.default.createElement("div", { className: "card" },
-                    react_1.default.createElement("div", { className: "topBar" }),
-                    react_1.default.createElement("h1", null, title),
-                    react_1.default.createElement("p", null, description))))));
+    return (_jsx(Title, { children: _jsx("div", __assign({ className: "cardContainer" }, { children: _jsx("div", __assign({ className: "cardCreate" }, { children: _jsxs("div", __assign({ className: "card" }, { children: [_jsx("div", { className: "topBar" }, void 0),
+                        _jsx("h1", { children: title }, void 0),
+                        _jsx("p", { children: description }, void 0)] }), void 0) }), void 0) }), void 0) }, void 0));
 };
 var CardItem = function (_a) {
     var setAnswerObj = _a.setAnswerObj, question = _a.question, questions = _a.questions, type = _a.type, index = _a.index;
@@ -102,37 +75,29 @@ var CardItem = function (_a) {
     };
     var method;
     if (type == "choice") {
-        method = (react_1.default.createElement(FormControl_1.default, { component: "fieldset" },
-            react_1.default.createElement(RadioGroup_1.default, { "aria-label": "gender", onChange: function (e) { return handleChangeAnswer(e.target.value); } }, questions.map(function (card) {
-                return (react_1.default.createElement(FormControlLabel_1.default, { key: card._id, value: card.option, control: react_1.default.createElement(Radio_1.default, null), label: card.option }));
-            }))));
+        method = (_jsx(FormControl, __assign({ component: "fieldset" }, { children: _jsx(RadioGroup, __assign({ "aria-label": "gender", onChange: function (e) { return handleChangeAnswer(e.target.value); } }, { children: questions.map(function (card) {
+                    return (_jsx(FormControlLabel, { value: card.option, control: _jsx(Radio, {}, void 0), label: card.option }, card._id));
+                }) }), void 0) }), void 0));
     }
     else if (type == "paragraph") {
-        method = (react_1.default.createElement("div", { className: "paragraph" },
-            react_1.default.createElement(TextareaAutosize_1.default, { spellCheck: "false", placeholder: "Your answer", onChange: function (e) { return handleChangeAnswer(e.target.value); } }),
-            react_1.default.createElement("div", { className: "lines" },
-                react_1.default.createElement("div", { className: "line2" }),
-                react_1.default.createElement("div", { className: "line" }))));
+        method = (_jsxs("div", __assign({ className: "paragraph" }, { children: [_jsx(TextareaAutosize, { spellCheck: "false", placeholder: "Your answer", onChange: function (e) { return handleChangeAnswer(e.target.value); } }, void 0),
+                _jsxs("div", __assign({ className: "lines" }, { children: [_jsx("div", { className: "line2" }, void 0),
+                        _jsx("div", { className: "line" }, void 0)] }), void 0)] }), void 0));
     }
     else if (type == "short") {
-        method = (react_1.default.createElement("div", { className: "short" },
-            react_1.default.createElement("input", { spellCheck: "false", placeholder: "Your answer", onChange: function (e) { return handleChangeAnswer(e.target.value); } }),
-            react_1.default.createElement("div", { className: "lines" },
-                react_1.default.createElement("div", { className: "line2" }),
-                react_1.default.createElement("div", { className: "line" }))));
+        method = (_jsxs("div", __assign({ className: "short" }, { children: [_jsx("input", { spellCheck: "false", placeholder: "Your answer", onChange: function (e) { return handleChangeAnswer(e.target.value); } }, void 0),
+                _jsxs("div", __assign({ className: "lines" }, { children: [_jsx("div", { className: "line2" }, void 0),
+                        _jsx("div", { className: "line" }, void 0)] }), void 0)] }), void 0));
     }
-    return (react_1.default.createElement(styles_1.Card, null,
-        react_1.default.createElement("div", { className: "card" },
-            react_1.default.createElement("h1", null, question),
-            method)));
+    return (_jsx(Card, { children: _jsxs("div", __assign({ className: "card" }, { children: [_jsx("h1", { children: question }, void 0), method] }), void 0) }, void 0));
 };
 var Answer = function (_a) {
     var options = _a.options, setOptions = _a.setOptions;
-    var _b = react_1.useState([]), answerObj = _b[0], setAnswerObj = _b[1];
-    var _c = react_1.useState(""), errors = _c[0], setErrors = _c[1];
-    var _d = react_1.useState(""), confirm = _d[0], setConfirm = _d[1];
-    var _e = react_1.useState(false), IsAnswer = _e[0], setIsAnswer = _e[1];
-    var _f = react_1.useContext(UserProvider_1.Context), user = _f[0], setUser = _f[1];
+    var _b = useState([]), answerObj = _b[0], setAnswerObj = _b[1];
+    var _c = useState(""), errors = _c[0], setErrors = _c[1];
+    var _d = useState(""), confirm = _d[0], setConfirm = _d[1];
+    var _e = useState(false), IsAnswer = _e[0], setIsAnswer = _e[1];
+    var _f = useContext(Context), user = _f[0], setUser = _f[1];
     var result = Object.keys(answerObj).map(function (key) { return answerObj[key]; });
     var verifyAnswer = function () {
         var keyCount = Object.keys(answerObj).length;
@@ -157,11 +122,11 @@ var Answer = function (_a) {
                     getErrors = verifyAnswer();
                     if (!(getErrors.length < 1)) return [3 /*break*/, 4];
                     if (!!IsAnswer) return [3 /*break*/, 2];
-                    return [4 /*yield*/, api_1.default.post('/answer/createAnswer', {
+                    return [4 /*yield*/, api.post('/answer/createAnswer', {
                             form_id: options._id,
                             user_prop_id: options.user_id,
                             author: user.name ? user.name : "",
-                            date: dayjs_1.default().format('DD/MM/YYYY'),
+                            date: dayjs().format('DD/MM/YYYY'),
                             answers: result
                         })
                             .then(function (user) {
@@ -192,22 +157,14 @@ var Answer = function (_a) {
             }
         });
     }); };
-    return (react_1.default.createElement(styles_1.Container, null,
-        react_1.default.createElement(TitleCard, { title: options.title, description: options.description }),
-        options.cards.map(function (option, index) {
-            return (react_1.default.createElement(CardItem, { setAnswerObj: setAnswerObj, key: option._id, index: index, question: option.question, questions: option.questions, type: option.type }));
-        }),
-        react_1.default.createElement("div", { className: "confirm" },
-            react_1.default.createElement("button", { className: "submitBtn", onClick: postAnswer }, "Submit"),
-            errors && (react_1.default.createElement("div", { className: "error" },
-                react_1.default.createElement(IconButton_1.default, { size: "small" },
-                    react_1.default.createElement(ErrorOutlineRounded_1.default, null),
-                    react_1.default.createElement("div", { className: "errorMessage" },
-                        react_1.default.createElement("p", null, errors))))),
-            confirm && (react_1.default.createElement("div", { className: "success" },
-                react_1.default.createElement(IconButton_1.default, { size: "small" },
-                    react_1.default.createElement(CheckCircleOutline_1.default, null),
-                    react_1.default.createElement("div", { className: "successMessage" },
-                        react_1.default.createElement("p", null, confirm))))))));
+    return (_jsxs(Container, { children: [_jsx(TitleCard, { title: options.title, description: options.description }, void 0),
+            options.cards.map(function (option, index) {
+                return (_jsx(CardItem, { setAnswerObj: setAnswerObj, index: index, question: option.question, questions: option.questions, type: option.type }, option._id));
+            }),
+            _jsxs("div", __assign({ className: "confirm" }, { children: [_jsx("button", __assign({ className: "submitBtn", onClick: postAnswer }, { children: "Submit" }), void 0),
+                    errors && (_jsx("div", __assign({ className: "error" }, { children: _jsxs(IconButton, __assign({ size: "small" }, { children: [_jsx(ErrorIcon, {}, void 0),
+                                _jsx("div", __assign({ className: "errorMessage" }, { children: _jsx("p", { children: errors }, void 0) }), void 0)] }), void 0) }), void 0)),
+                    confirm && (_jsx("div", __assign({ className: "success" }, { children: _jsxs(IconButton, __assign({ size: "small" }, { children: [_jsx(CheckCircleOutlineIcon, {}, void 0),
+                                _jsx("div", __assign({ className: "successMessage" }, { children: _jsx("p", { children: confirm }, void 0) }), void 0)] }), void 0) }), void 0))] }), void 0)] }, void 0));
 };
-exports.default = Answer;
+export default Answer;

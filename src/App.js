@@ -1,4 +1,14 @@
-"use strict";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useContext, useEffect } from 'react';
+import GlobalStyle from './styles';
+import { Context } from './UserProvider';
+import Root from './pages/Root';
+import New from './pages/New';
+import Login from './components/Login';
+import auth from './auth';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import dotenv from 'dotenv';
+import jwtDecode from 'jwt-decode';
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,25 +19,6 @@ var __assign = (this && this.__assign) || function () {
         return t;
     };
     return __assign.apply(this, arguments);
-};
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
 };
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
@@ -40,38 +31,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = __importStar(require("react"));
-var styles_1 = __importDefault(require("./styles"));
-var UserProvider_1 = require("./UserProvider");
-var Root_1 = __importDefault(require("./pages/Root"));
-var New_1 = __importDefault(require("./pages/New"));
-var Login_1 = __importDefault(require("./components/Login"));
-var auth_1 = __importDefault(require("./auth"));
-var react_router_dom_1 = require("react-router-dom");
-var dotenv_1 = __importDefault(require("dotenv"));
-var jwt_decode_1 = __importDefault(require("jwt-decode"));
-dotenv_1.default.config();
+dotenv.config();
 function PrivateRoute(_a) {
     var Component = _a.component, rest = __rest(_a, ["component"]);
-    return react_1.default.createElement(react_router_dom_1.Route, __assign({}, rest, { render: function (props) { return (auth_1.default.isAuthenticated() ? (react_1.default.createElement(Component, __assign({}, props))) : (react_1.default.createElement(react_router_dom_1.Redirect, { to: { pathname: "/login", state: { from: props.location } } }))); } }));
+    return _jsx(Route, __assign({}, rest, { render: function (props) { return (auth.isAuthenticated() ? (_jsx(Component, __assign({}, props), void 0)) : (_jsx(Redirect, { to: { pathname: "/login", state: { from: props.location } } }, void 0))); } }), void 0);
 }
 function App() {
-    var _a = react_1.useContext(UserProvider_1.Context), user = _a[0], setUser = _a[1];
-    var userObj = auth_1.default.isAuthenticated();
-    react_1.useEffect(function () {
-        userObj && setUser(jwt_decode_1.default(userObj));
+    var _a = useContext(Context), user = _a[0], setUser = _a[1];
+    var userObj = auth.isAuthenticated();
+    useEffect(function () {
+        userObj && setUser(jwtDecode(userObj));
     }, []);
-    return (react_1.default.createElement(react_router_dom_1.BrowserRouter, null,
-        react_1.default.createElement(react_router_dom_1.Switch, null,
-            react_1.default.createElement(react_router_dom_1.Route, { path: "/login", exact: true },
-                react_1.default.createElement(Login_1.default, null)),
-            react_1.default.createElement(PrivateRoute, { path: "/", exact: true, component: function () { return react_1.default.createElement(Root_1.default, null); } }),
-            react_1.default.createElement(react_router_dom_1.Route, { path: "/f/:id", exact: true },
-                react_1.default.createElement(New_1.default, null))),
-        react_1.default.createElement(styles_1.default, null)));
+    return (_jsxs(Router, { children: [_jsxs(Switch, { children: [_jsx(Route, __assign({ path: "/login", exact: true }, { children: _jsx(Login, {}, void 0) }), void 0),
+                    _jsx(PrivateRoute, { path: "/", exact: true, component: function () { return _jsx(Root, {}, void 0); } }, void 0),
+                    _jsx(Route, __assign({ path: "/f/:id", exact: true }, { children: _jsx(New, {}, void 0) }), void 0)] }, void 0),
+            _jsx(GlobalStyle, {}, void 0)] }, void 0));
 }
-exports.default = App;
+export default App;
